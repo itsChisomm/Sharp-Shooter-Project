@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] GameObject hitVFXPrefab;
     [SerializeField] int damageAmount = 1;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] Animator animator;
@@ -31,11 +32,13 @@ public class Weapon : MonoBehaviour
             animator.Play(SHOOT_STRING, 0, 0f);
             starterAssetsInputs.ShootInput(false);
 
-        RaycastHit hit; // variable to store information about what was hit
+            RaycastHit hit; // variable to store information about what was hit
 
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
+            Instantiate(hitVFXPrefab, hit.point, Quaternion.identity); // spawn hit effect at the point of impact
+
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
             enemyHealth?.TakeDamage(damageAmount);
 
