@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] int damageAmount = 1;
+
     StarterAssetsInputs starterAssetsInputs;
 
     private void Awake()
@@ -13,17 +15,23 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (starterAssetsInputs.shoot)
+        HandleShoot();
+    }
+
+    void HandleShoot()
+    {
+        if (!starterAssetsInputs.shoot) return;
+
+        RaycastHit hit;
+
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
-            RaycastHit hit;
+            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            enemyHealth?.TakeDamage(damageAmount);
 
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
-            {
-                Debug.Log(hit.collider.name);
-                starterAssetsInputs.shoot = false;
-            }
-
+            starterAssetsInputs.ShootInput(false);
         }
     }
-}
+ }
+
