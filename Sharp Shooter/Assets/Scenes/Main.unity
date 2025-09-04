@@ -871,6 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   damageAmount: 1
   muzzleFlash: {fileID: 1316732275492035083}
+  animator: {fileID: 1807786584}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
