@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
             {
                 Debug.Log(hit.collider.name);
+                starterAssetsInputs.shoot = false;
             }
 
         }
