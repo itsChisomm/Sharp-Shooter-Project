@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
     {
         if (!starterAssetsInputs.shoot) return;
 
-        RaycastHit hit;
+        RaycastHit hit; // variable to store information about what was hit
 
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
