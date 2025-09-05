@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bb5cd2bac65df43bbd7f53c8874f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
+  rotationSpeed: 100
+  weaponSO: {fileID: 0}
 --- !u!1 &6400056911551123431
 GameObject:
   m_ObjectHideFlags: 0
