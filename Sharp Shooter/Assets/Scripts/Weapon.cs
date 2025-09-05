@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] WeaponSO weaponSO;
     [SerializeField] GameObject hitVFXPrefab;
-    [SerializeField] int damageAmount = 1;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] Animator animator;
 
@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
             Instantiate(hitVFXPrefab, hit.point, Quaternion.identity); // spawn hit effect at the point of impact
 
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-            enemyHealth?.TakeDamage(damageAmount);
+            enemyHealth?.TakeDamage(weaponSO.Damage);
 
         }
     }
