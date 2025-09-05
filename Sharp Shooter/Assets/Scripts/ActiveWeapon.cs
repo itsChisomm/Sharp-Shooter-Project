@@ -35,12 +35,27 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (!starterAssetsInputs.shoot) return;
 
-        if (timeSinceLastShot < weaponSO.FireRate) 
+        if (timeSinceLastShot >= weaponSO.FireRate) // can shoot
         { 
             currentWeapon.Shoot(weaponSO);
             animator.Play(SHOOT_STRING, 0, 0f);
             timeSinceLastShot = 0f;
         }
-        starterAssetsInputs.ShootInput(false);
+        if (!weaponSO.IsAutomatic) 
+        {
+            starterAssetsInputs.ShootInput(false);
+        }
+    }
+
+    public void SwitchWeapon(WeaponSO weaponSO)
+    {
+        if (currentWeapon)
+        {
+            Destroy(currentWeapon.gameObject);
+        }
+
+        Weapon newWeapon = Instantiate(weaponSO.weaponPrefab, transform).GetComponent<Weapon>();
+        currentWeapon = newWeapon;
+        this.weaponSO = weaponSO;
     }
 }
