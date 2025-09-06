@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -5,10 +6,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] LayerMask interactionLayers;
 
+    CinemachineImpulseSource impulseSource;
+
+    private void Awake()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
     public void Shoot(WeaponSO weaponSO)
     {
         
         muzzleFlash.Play();
+        impulseSource.GenerateImpulse();
+
         RaycastHit hit; // variable to store information about what was hit
 
         // Does the ray intersect any objects excluding the player layer
@@ -17,6 +27,7 @@ public class Weapon : MonoBehaviour
             Instantiate(weaponSO.HitVFXPrefab, hit.point, Quaternion.identity); // spawn hit effect at the point of impact
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
             enemyHealth?.TakeDamage(weaponSO.Damage);
+            
 
         }
     }
