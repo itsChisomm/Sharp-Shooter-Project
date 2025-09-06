@@ -12,7 +12,7 @@ public class Robot : MonoBehaviour
 
     void Awake()
     {
-        // get a reference to the NavMeshAgent component
+    // get a reference to the NavMeshAgent component
         agent = GetComponent<NavMeshAgent>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +24,7 @@ public class Robot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!player) return; 
         agent.SetDestination(player.transform.position);
     }
 
