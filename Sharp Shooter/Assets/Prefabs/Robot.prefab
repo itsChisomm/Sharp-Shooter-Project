@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   startingHealth: 3
+  robotExplosionVFX: {fileID: 6602619673427015116, guid: b5f094d03fc84bf41834869c7e92232a, type: 3}
 --- !u!114 &2611614580813202255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8ee6b4e96d25e3e4f9f31ed5e2666cdb, type: 3}
       propertyPath: m_Name
       value: HoveringRobot02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ee6b4e96d25e3e4f9f31ed5e2666cdb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
